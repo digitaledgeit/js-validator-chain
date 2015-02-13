@@ -13,6 +13,20 @@ function ValidatorChain() {
 }
 
 /**
+ * Get/set
+ * @param   {bool|function} [optional]
+ * @returns {ValidatorChain}
+ */
+ValidatorChain.prototype.optional = function(optional) {
+  if (arguments.length) {
+    this._optional = optional;
+    return this;
+  } else {
+    return this._optional;
+  }
+};
+
+/**
  * Add a validator to the chain
  * @param   {function(*, [function])}   fn        The validator function
  * @param   {Object}                    [ctx]     The validator context
@@ -47,6 +61,12 @@ ValidatorChain.prototype.validate = function(value, callback) {
     //the value is invalid, now we can finish
     if (!valid) {
       return callback(err, valid, validator.ctx);
+    }
+
+    //check for optional
+    var optional = typeof(self._optional) === 'function' ? self._optional() : Boolean(self._optional);
+    if (optional && (value === undefined || value === null || value === [] || value === '')) {
+      return callback(err, valid);
     }
 
     //we've run all the validators, now we can finish

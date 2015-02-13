@@ -172,6 +172,74 @@ describe('validator-chain', function() {
 
     });
 
+    it('should return valid when the value is empty and validation is optional (bool)', function(done) {
+
+      function fn(value) {
+        return false;
+      }
+
+      ValidatorChain()
+        .add(fn)
+        .optional(true)
+        .validate('', function(err, valid, ctx) {
+          assert(valid);
+          done();
+        })
+      ;
+
+    });
+
+    it('should return invalid when the value is empty and validation is not optional (bool)', function(done) {
+
+      function fn(value) {
+        return false;
+      }
+
+      ValidatorChain()
+        .add(fn)
+        .optional(false)
+        .validate('', function(err, valid, ctx) {
+          assert(!valid);
+          done();
+        })
+      ;
+
+    });
+
+    it('should return valid when the value is empty and validation is optional (function)', function(done) {
+
+      function fn(value) {
+        return false;
+      }
+
+      ValidatorChain()
+        .add(fn)
+        .optional(function() { return true; })
+        .validate('', function(err, valid, ctx) {
+          assert(valid);
+          done();
+        })
+      ;
+
+    });
+
+    it('should return invalid when the value is empty and validation is not optional (function)', function(done) {
+
+      function fn(value) {
+        return false;
+      }
+
+      ValidatorChain()
+        .add(fn)
+        .optional(function() { return false; })
+        .validate('', function(err, valid, ctx) {
+          assert(!valid);
+          done();
+        })
+      ;
+
+    });
+
     it('should run a conditional rule when the condition is true', function(done) {
       var called = false;
 
