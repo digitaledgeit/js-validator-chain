@@ -59,13 +59,18 @@ See the [examples](./example) folder for more.
 
 Create a new validation chain.
 
+#### .optional(fn|bool)
+
+Whether an empty value is considered valid and the validators should not be run.
+
+
 #### .add(fn, ctx, when)
 
 Add a new validator to the chain.
 
 - fn - the validation method
 - ctx - the validation context - optional and can be anything e.g. a message string
-- when - a validation condition - the validation method is only run when the condition is true - optional and must be a function that returns a boolean
+- when - a validation condition - if provided, the validation method is only run when the condition is true - optional function that returns a boolean
 
 #### .validate(value, callback)
 

@@ -1,0 +1,18 @@
+{
+  "name": "@digitaledgeit/validator-chain",
+  "description": "A simple validator chain for running multiple validators on a single input value.",
+  "keywords": [
+    "browser",
+    "validator",
+    "chain"
+  ],
+  "version": "0.3.0",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:digitaledgeit/js-validator-chain.git"
+  },
+  "bugs": {
+    "url": "https://github.com/digitaledgeit/js-validator-chain/issues"
+  },
+  "license": "MIT"
+}
